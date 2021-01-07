@@ -11,28 +11,33 @@ import { SignUpComponent } from './home/signup/signup.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-    { path: '',
-      component: HomeComponent,
-      canActivate: [AuthGuard],
-      children: [
-        { 
-          path: '',
-          component: SignInComponent
-        },
-        { 
-          path: 'signup',
-          component: SignUpComponent,
-        }
-      ]
-    },    
-    { path: 'user/:userName', 
-      component: PhotoListComponent,
-      resolve: {
-          photos: PhotoListResolver
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  { path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { 
+        path: '',
+        component: SignInComponent
+      },
+      { 
+        path: 'signup',
+        component: SignUpComponent,
       }
-    },    
-    { path: 'p/add', component: PhotoFormComponent},
-    { path: '**', component: NotFoundComponent}
+    ]
+  },    
+  { path: 'user/:userName', 
+    component: PhotoListComponent,
+    resolve: {
+        photos: PhotoListResolver
+    }
+  },    
+  { path: 'p/add', component: PhotoFormComponent},
+  { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
