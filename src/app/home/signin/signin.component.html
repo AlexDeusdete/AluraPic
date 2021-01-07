@@ -25,7 +25,7 @@
     </div>
 
     <button 
-        [disabled]="loginForm.invalid"
+        [disabled]="signupForm.invalid || signupForm.pending"
         type="submit" 
         class="btn btn-primary btn-block">
         login
