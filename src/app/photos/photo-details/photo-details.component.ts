@@ -41,4 +41,13 @@ export class PhotoDetailsComponent implements OnInit {
                 err => this.alertService.danger(err.message, true)
             );
     }
+
+    like(photo: Photo){
+        this.photoService.like(photo.id)
+            .subscribe(liked => {
+                if(liked){
+                    this.photo$ = this.photoService.findById(photo.id);
+                }
+            })
+    }
 }
